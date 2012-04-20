@@ -1,0 +1,15 @@
+[user]
+name = czarandy
+email = andy.goder@gmail.com
+[color]
+diff = auto
+status = auto
+branch = auto
+[alias]
+br = branch
+co = checkout
+ci = commit
+di = diff
+st = status
+[core]
+excludesfile = ~/.gitignore
