@@ -39,9 +39,16 @@ set tw=80
 " Ctrl+] shows list of tags
 noremap <C-]> g<C-]>
 
+" F4 fixes syntax highlighting
+noremap <F4> :syntax off<CR>:syntax on<CR>
+
 " Fix common typos
 ca WQ wq
 ca Wq wq
+
+" Make \% insert the current filename
+nmap <Leader>% "=expand("%:t:r")<C-M>p
+imap <Leader>% <c-r>=expand("%:t:r")<C-M>
 
 set undolevels=1000
 
