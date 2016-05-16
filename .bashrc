@@ -1,6 +1,8 @@
 # Aliases
 alias ls="ls --color"
 alias ll="ls -l --color"
+alias vim="vim -O"
+alias vi="vim -O"
 
 # Git aliases
 alias gcp="git commit -am 'Checkpoint'"
