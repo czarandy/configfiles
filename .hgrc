@@ -1,0 +1,29 @@
+[ui]
+username = Andrey Goder <andy.goder@gmail.com>
+style = ~/.hg-style
+
+[color]
+c.none = none
+c.bold = bold
+c.black = black
+c.red = red
+c.green = green
+c.yellow = yellow
+c.blue = blue
+c.magenta = magenta
+c.cyan = cyan
+c.white = white
+c.italic = italic
+c.underline = underline
+c.inverse = inverse
+c.blackbg = black_background
+c.redbg = red_background
+
+[extensions]
+churn=
+
+[histedit]
+dropmissing = False
+
+[alias]
+shownames = log -r . -T "files:\n{files % '  {file}\n'}"
