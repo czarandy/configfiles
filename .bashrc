@@ -25,7 +25,7 @@ function scan() {
 
 function sleep_until() {
   start=$(date +%s)
-  end=$(date -d "$@" +%s)
+  end=$(date -d "$*" +%s)
   time=$(($end - $start))
   sleep $time
 }
