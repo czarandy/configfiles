@@ -22,3 +22,10 @@ export PS1="\[\033[35m\]\t\[\033[m\] \[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h \[\
 function scan() {
   grep -Ri "$*" .
 }
+
+function sleep_until() {
+  start=$(date +%s)
+  end=$(date -d "$@" +%s)
+  time=$(($end - $start))
+  sleep $time
+}
