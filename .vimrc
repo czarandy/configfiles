@@ -46,6 +46,9 @@ noremap <F4> :syntax off<CR>:syntax on<CR>
 ca WQ wq
 ca Wq wq
 
+inoremap jk <Esc>
+inoremap kj <Esc>
+
 " Make \% insert the current filename
 nmap <Leader>% "=expand("%:t:r")<C-M>p
 imap <Leader>% <c-r>=expand("%:t:r")<C-M>
@@ -58,3 +61,39 @@ set undolevels=1000
 
 " Remove trailing spaces when saving files
 autocmd BufWritePre * :%s/\s\+$//e
+
+" Super backspace
+set backspace=start,indent,eol
+
+" JS/React features
+nmap <Leader>p :!prettier --write %<Enter><Enter>:edit<Enter>
+function AutoImport()
+  let word = expand("<cword>")
+  if (empty(word))
+    return
+  endif
+
+  let line = getline(".")
+  let wordPos = strridx(line, word, col(".") - 1) - 1
+
+  let react = ""
+  if wordPos > -1 && line[wordPos] == '<'
+    let react = ".react"
+  endif
+  if wordPos > -1 && line[wordPos] == '/'
+    let react = ".react"
+  endif
+
+  let cursorPos = getpos(".")
+
+  let foundline = search("import ")
+  let newline = "import ".word." from '".word.react."';"
+  if !search(newline)
+    call append(foundline, newline)
+    let cursorPos[1] = cursorPos[1] + 1
+  endif
+
+  call setpos(".", cursorPos)
+endfunction
+
+map <leader>i :call AutoImport()<cr>
