@@ -31,3 +31,22 @@ function sleep_until() {
   time=$(($end - $start))
   sleep $time
 }
+
+# SSH agent
+start_ssh_agent() {
+  local ssh_env="$HOME/.ssh/agent-env"
+
+  if [ -f "$ssh_env" ]; then
+    . "$ssh_env" >/dev/null
+  fi
+
+  ssh-add -l >/dev/null 2>&1
+  if [ "$?" = 2 ]; then
+    mkdir -p "$HOME/.ssh"
+    ssh-agent -s > "$ssh_env"
+    chmod 600 "$ssh_env"
+    . "$ssh_env" >/dev/null
+  fi
+}
+start_ssh_agent
+unset -f start_ssh_agent
