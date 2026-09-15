@@ -55,6 +55,37 @@ imap <Leader>% <c-r>=expand("%:t:r")<C-M>
 
 set undolevels=1000
 
+" TypeScript language server
+if executable('typescript-language-server')
+  function! s:ConfigureLspBuffer() abort
+    setlocal omnifunc=lsp#complete
+    if exists('+tagfunc')
+      setlocal tagfunc=lsp#tagfunc
+    endif
+    nmap <buffer> gd <plug>(lsp-definition)
+  endfunction
+
+  augroup typescript_lsp
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+          \ 'name': 'typescript-language-server',
+          \ 'cmd': {server_info->['typescript-language-server', '--stdio']},
+          \ 'root_uri': {server_info->lsp#utils#path_to_uri(
+          \   lsp#utils#find_nearest_parent_file_directory(
+          \     lsp#utils#get_buffer_path(),
+          \     ['tsconfig.json', 'package.json', '.git']
+          \   ))},
+          \ 'allowlist': [
+          \   'javascript',
+          \   'javascriptreact',
+          \   'typescript',
+          \   'typescriptreact'
+          \ ],
+          \ })
+    autocmd User lsp_buffer_enabled call s:ConfigureLspBuffer()
+  augroup END
+endif
+
 " Bind 'gb' to 'git blame'
 :vmap gb :<C-U>!git blame % -L<C-R>=line("'<") <CR>,<C-R>=line("'>") <CR><CR>
 :nmap gb :!git blame %<CR>
