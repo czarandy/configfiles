@@ -57,13 +57,8 @@ set undolevels=1000
 
 " TypeScript language server
 if executable('typescript-language-server')
-  function! s:ConfigureLspBuffer() abort
-    setlocal omnifunc=lsp#complete
-    if exists('+tagfunc')
-      setlocal tagfunc=lsp#tagfunc
-    endif
-    nmap <buffer> gd <plug>(lsp-definition)
-  endfunction
+  let g:lsp_diagnostics_enabled = 0
+  let g:lsp_document_code_action_signs_enabled = 0
 
   augroup typescript_lsp
     autocmd!
@@ -76,13 +71,11 @@ if executable('typescript-language-server')
           \     ['tsconfig.json', 'package.json', '.git']
           \   ))},
           \ 'allowlist': [
-          \   'javascript',
-          \   'javascriptreact',
           \   'typescript',
           \   'typescriptreact'
           \ ],
           \ })
-    autocmd User lsp_buffer_enabled call s:ConfigureLspBuffer()
+    autocmd User lsp_buffer_enabled nmap <buffer> gd <plug>(lsp-definition)
   augroup END
 endif
 
