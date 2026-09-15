@@ -59,6 +59,8 @@ set undolevels=1000
 if executable('typescript-language-server')
   let g:lsp_diagnostics_enabled = 0
   let g:lsp_document_code_action_signs_enabled = 0
+  let g:lsp_document_highlight_enabled = 0
+  let g:lsp_signature_help_enabled = 0
 
   augroup typescript_lsp
     autocmd!
