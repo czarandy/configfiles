@@ -78,6 +78,7 @@ if executable('typescript-language-server')
           \ ],
           \ })
     autocmd User lsp_buffer_enabled nmap <buffer> gd <plug>(lsp-definition)
+    autocmd User lsp_buffer_enabled nmap <buffer> K <plug>(lsp-hover)
   augroup END
 endif
 
