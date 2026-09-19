@@ -61,6 +61,7 @@ if executable('typescript-language-server')
   let g:lsp_document_code_action_signs_enabled = 0
   let g:lsp_document_highlight_enabled = 0
   let g:lsp_signature_help_enabled = 0
+  let g:lsp_use_native_client = 1
 
   augroup typescript_lsp
     autocmd!
@@ -72,6 +73,7 @@ if executable('typescript-language-server')
           \     lsp#utils#get_buffer_path(),
           \     ['tsconfig.json', 'package.json', '.git']
           \   ))},
+          \ 'initialization_options': {'maxTsServerMemory': 4096},
           \ 'allowlist': [
           \   'typescript',
           \   'typescriptreact'
