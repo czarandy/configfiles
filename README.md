@@ -14,3 +14,7 @@ git clone https://github.com/prabirshrestha/vim-lsp.git \
 
 In a TypeScript or TSX buffer, `gd` jumps to the definition in the current
 window. Use `Ctrl-O` to jump back.
+
+On Linux, install `inotify-tools` to keep navigation current when new TypeScript
+files are added under `src`, `app`, `lib`, `e2e`, `tests`, or `scripts`. Vim
+debounces these events and restarts the language server automatically.

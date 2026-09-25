@@ -1,0 +1,4 @@
+build --config=local-cache
+build:local-cache --disk_cache=~/.cache/bazel-disk-cache
+build:local-cache --experimental_disk_cache_gc_max_size=100G
+build:local-cache --remote_download_minimal
