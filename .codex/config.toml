@@ -1,0 +1,7 @@
+model = "gpt-6-astra"
+model_reasoning_effort = "high"
+
+# Avoid tmux Shift+Left/Right window-switching shortcuts.
+[tui.keymap.chat]
+edit_queued_message = "f8"
+prompt_stack_back = "f9"
